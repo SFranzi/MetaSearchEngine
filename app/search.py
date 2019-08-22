@@ -16,31 +16,39 @@ def expertenservice(searchterm):
 	#result = driver.find_element_by_class_name("oap-results")
 	oap_results = driver.find_elements_by_class_name("oap-result")
 
-	for r in oap_results: 
-		if r.text:
-			#title = driver.find_element_by_class_name("oap-result-title")
-			#print(title.text)
-			#print(r.text) 
-			#print("--------------------------------------------------")
+	#result_list = []
+	#for result in oap_results: 
+		#f result.text:
+			#contact = dict()
+			#text = result.text
+			#array = text.split("\n")
+			#for element in array: 
+				#contact['name'] = element
+			#result_list.append(contact)
+	#return result_list
 
-			text = r.text
-			array = text.split("\n")
-			#print(array)
+	result_list = []
+	for result in oap_results:
+		if result.text: 
+			name = result.find_element_by_class_name("oap-result-title").text
+			tags = []
+			for tag in result.find_elements_by_class_name("tag"): 
+				tags.append(tag.text)
+			infos = dict()
+			for info in result.find_elements_by_class_name("oap-result-info"):
+				array = info.text.split("\n")
+				infos[array[0]] = array[1]
+			result_list.append({"name": name, "tags": tags, **infos})
+	return result_list
 
-
-			title = array[0]
-
-			#for i in range(len(array)): 
-				#print(array[i])
-			#if array[1] == 'Schwerpunkte'
-				#schwerpunkte = array[1]
-			#else 
-			print(title)
-			results.append(title)
-
-	return results
 
 	#print(schwerpunkte)
 	#print(result.text)
 	#driver.quit()
+
+	#for i in range(len(array)): 
+				#print(array[i])
+			#if array[1] == 'Schwerpunkte'
+				#schwerpunkte = array[1]
+			#else 
 		
