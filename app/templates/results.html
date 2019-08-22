@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+	<!--The SearchForm can be found in forms.py
+	- The form element functions as a container for the webform. 
+	- The action attribute tells the browser the URL that should be used when submitting the information the user entered in the form. When the action is set to an empty string the form is submitted to the URL that is currently in the address bar.
+	- The novalidate attribute tells the browser to not apply validation to the fields in this form, which leaves the task to the Flask application (server-side validation). 
+	- The form.hidden_tag() generates a hidden_field which includes a token that is used to protect the form against CSRF attacks.--> 
+      <form action="" method="get" novalidate class="pt-4">
+      	{{ form.hidden_tag() }}
+      	<p>
+      		{{ form.q(size=20, class='form-control', placeholder='What do you want to know?')}}
+      	</p>
+      </form>
+      <p>{{results}}</p>
+
+{% endblock %}
+
+   
