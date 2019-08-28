@@ -24,5 +24,5 @@ def search():
 		print(time_diff)
 		return render_template('results.html', results = results, form = form, time_diff = time_diff)
 	else: 
-		return render_template('search2.html', form = form)
+		return render_template('search.html', form = form)
 

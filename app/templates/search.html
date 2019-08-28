@@ -1,13 +1,10 @@
 {% extends "base.html" %}
 {% block content %}     
 
-<div class="wrapper" style="display: none" id="loading">
-  <div class="loader">
-    <div class="sq sq1"></div>
-    <div class="sq sq2"></div>
-    <div class="sq sq3"></div>
-    <div class="sq sq4"></div>
-    <div class="sq sq5"></div>
+<div class="loader" style="display: none" id="loading">
+  <div class="title">Loading...</div>
+  <div class="load">
+    <div class="bar"></div>
   </div>
 </div>
 
@@ -15,6 +12,18 @@
   $('#searchform').on('submit', function(e) {
   	$("#loading").show()
   })
+
+$(document).ready(function(){
+  function rotate(selector)
+  {
+    $(selector).animate( { left: $('.load').width() }, 1500, function(){
+      $(selector).css("left", -($(selector).width()) + "px");
+      rotate(selector);
+    });
+  }
+  
+  rotate('.bar');
+});
 </script>
 
 {% endblock %}
